@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="{{'/'}}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('get') }}">All posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('post') }}">Create</a>
+        </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
