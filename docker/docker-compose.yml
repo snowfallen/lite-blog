@@ -1,0 +1,30 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    image: nginx
+    volumes:
+      - ./:/usr/share/nginx/html/
+    ports:
+      - 8181:80
+    working_dir: ${APP_PATH_CONTAINER}
+
+  db:
+    container_name: db
+    build: databases
+    restart: always
+    ports:
+      - 3030:3306
+    volumes:
+      - ${DB_PATH_HOST}:/etc/mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 6080:80
+    environment:
+      - PMA_ARBITRARY=1
